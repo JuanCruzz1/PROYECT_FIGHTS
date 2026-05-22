@@ -1,11 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HitboxController : MonoBehaviour
 {
-    /*
-    public int damage;
-    private List<DamageReceiver> damagedTargets = new List<DamageReceiver>();
+    [SerializeField] private int damage = 10;
+    [SerializeField] private Transform ownerRoot;
 
+    private readonly HashSet<DamageReceiver> damagedTargets = new HashSet<DamageReceiver>();
+
+    private void OnEnable()
+    {
+        damagedTargets.Clear();
+    }
 
     public void ActivateHitbox()
     {
@@ -18,15 +24,33 @@ public class HitboxController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void SetDamage(int newDamage)
+    {
+        damage = Mathf.Max(0, newDamage);
+    }
+
+    public void SetOwnerRoot(Transform newOwnerRoot)
+    {
+        ownerRoot = newOwnerRoot;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (ownerRoot != null && other.transform.root == ownerRoot)
+        {
+            return;
+        }
+
         DamageReceiver receiver = other.GetComponent<DamageReceiver>();
 
-        if (receiver != null && !damagedTargets.Contains(receiver))
+        if (receiver == null)
+        {
+            receiver = other.GetComponentInParent<DamageReceiver>();
+        }
+
+        if (receiver != null && damagedTargets.Add(receiver))
         {
             receiver.ReceiveDamage(damage);
-            damagedTargets.Add(receiver);
         }
     }
-    */
 }

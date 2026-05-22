@@ -2,17 +2,29 @@ using UnityEngine;
 
 public class DamageReceiver : MonoBehaviour
 {
-    /*
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private HealthSystem healthSystem;
+
+    private void Awake()
     {
-        
+        if (healthSystem == null)
+        {
+            healthSystem = GetComponentInParent<HealthSystem>();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetHealthSystem(HealthSystem targetHealthSystem)
     {
-        
+        healthSystem = targetHealthSystem;
     }
-    */
+
+    public void ReceiveDamage(int damage)
+    {
+        if (healthSystem == null)
+        {
+            Debug.LogWarning($"{nameof(DamageReceiver)} on {name}: HealthSystem reference is missing.");
+            return;
+        }
+
+        healthSystem.TakeDamage(damage);
+    }
 }

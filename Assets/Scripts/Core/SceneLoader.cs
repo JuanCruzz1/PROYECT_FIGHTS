@@ -1,53 +1,82 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 
 public class SceneLoader : MonoBehaviour
 {
-    /*
-    public static class SceneNames
-    {
-        public const string Start = "StartScene";
-        public const string Instructions = "InstructionsScene";
-        public const string CharacterSelection = "CharacterSelectionScene";
-        public const string Loading = "LoadingScene";
-        public const string Fight = "FightScene";
-        public const string Credits = "CreditsScene";
-    }
+    [Header("Scene Names")]
+    [SerializeField] private string startSceneName = string.Empty;
+    [SerializeField] private string characterSelectionSceneName = string.Empty;
+    [SerializeField] private string loadingSceneName = string.Empty;
+    [SerializeField] private string fightSceneName = string.Empty;
+    [SerializeField] private string creditsSceneName = string.Empty;
 
     public void LoadStart()
     {
-        SceneManager.LoadScene("StartScene");
-    }
-
-    public void LoadInstructions()
-    {
-        SceneManager.LoadScene("InstructionsScene");
+        LoadConfiguredScene(startSceneName, GameFlowState.Start);
     }
 
     public void LoadCharacterSelection()
     {
-        SceneManager.LoadScene("CharacterSelectionScene");
+        LoadConfiguredScene(characterSelectionSceneName, GameFlowState.CharacterSelection);
     }
 
     public void LoadLoading()
     {
-        SceneManager.LoadScene("LoadingScene");
+        LoadConfiguredScene(loadingSceneName, GameFlowState.Loading);
     }
 
     public void LoadFight()
     {
-        SceneManager.LoadScene("FightScene");
+        LoadConfiguredScene(fightSceneName, GameFlowState.Fighting);
     }
 
     public void LoadCredits()
     {
-        SceneManager.LoadScene("CreditsScene");
+        LoadConfiguredScene(creditsSceneName, GameFlowState.Credits);
+    }
+
+    public void LoadLoadingOrFight(bool useLoadingScene)
+    {
+        if (useLoadingScene && !string.IsNullOrWhiteSpace(loadingSceneName))
+        {
+            LoadLoading();
+            return;
+        }
+
+        LoadFight();
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        LoadConfiguredScene(sceneName, GameFlowState.Loading);
     }
 
     public void ExitGame()
     {
+        Time.timeScale = 1f;
         Application.Quit();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
-    */
+
+    private void LoadConfiguredScene(string sceneName, GameFlowState newState)
+    {
+        Time.timeScale = 1f;
+
+        if (string.IsNullOrWhiteSpace(sceneName))
+        {
+            Debug.LogWarning($"{nameof(SceneLoader)}: Scene name is not assigned.");
+            return;
+        }
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SetGameState(newState);
+        }
+
+        SceneManager.LoadScene(sceneName);
+    }
 }

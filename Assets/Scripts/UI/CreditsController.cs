@@ -2,17 +2,40 @@ using UnityEngine;
 
 public class CreditsController : MonoBehaviour
 {
-    /*
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private SceneLoader sceneLoader = null;
+
+    private void Awake()
     {
-        
+        FindSceneLoaderIfNeeded();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SetGameState(GameFlowState.Credits);
+        }
     }
-    */
+
+    public void Exit()
+    {
+        FindSceneLoaderIfNeeded();
+
+        if (sceneLoader != null)
+        {
+            sceneLoader.ExitGame();
+        }
+        else
+        {
+            Application.Quit();
+        }
+    }
+
+    private void FindSceneLoaderIfNeeded()
+    {
+        if (sceneLoader == null)
+        {
+            sceneLoader = FindFirstObjectByType<SceneLoader>();
+        }
+    }
 }
