@@ -6,6 +6,7 @@ public class HealthSystem : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int currentHealth;
+    [SerializeField] private bool debugLogs = true;
 
     public event Action<int, int> OnHealthChanged;
     public event Action OnDeath;
@@ -43,9 +44,20 @@ public class HealthSystem : MonoBehaviour
 
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
+        if (debugLogs)
+        {
+            Debug.Log($"{nameof(HealthSystem)} on {name}: took {damage}. Health {currentHealth}/{maxHealth}.");
+        }
+
         if (currentHealth <= 0)
         {
             IsDead = true;
+
+            if (debugLogs)
+            {
+                Debug.Log($"{nameof(HealthSystem)} on {name}: death.");
+            }
+
             OnDeath?.Invoke();
         }
     }

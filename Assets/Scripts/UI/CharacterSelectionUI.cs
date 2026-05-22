@@ -7,6 +7,7 @@ public class CharacterSelectionUI : MonoBehaviour
     public class CharacterOption
     {
         public string displayName;
+        public FighterCharacter fighterCharacter = FighterCharacter.FerchoPoker;
         public CharacterData characterData;
         public GameObject characterPrefab;
         public Sprite icon;
@@ -99,6 +100,11 @@ public class CharacterSelectionUI : MonoBehaviour
                 selectedCharacter.characterData,
                 selectedCharacter.characterPrefab
             );
+
+            if (selectedCharacter.characterData == null)
+            {
+                GameManager.Instance.SetSelectedFighterCharacter(selectedCharacter.fighterCharacter);
+            }
         }
 
         FindSceneLoaderIfNeeded();

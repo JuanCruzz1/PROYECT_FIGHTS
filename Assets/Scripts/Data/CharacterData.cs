@@ -1,22 +1,28 @@
 using UnityEngine;
 
+public enum FighterCharacter
+{
+    FerchoPoker,
+    CruzRusher,
+    KingBling
+}
+
 [CreateAssetMenu(fileName = "CharacterDatat", menuName = "Scriptable Objects/CharacterData")]
 public class CharacterData : ScriptableObject
 {
-    /*
-    
-        public string characterName;
-        public Sprite icon;
-        public GameObject characterPrefab;
+    public FighterCharacter fighterCharacter = FighterCharacter.FerchoPoker;
+    public string characterName;
+    public Sprite icon;
+    public GameObject characterPrefab;
 
-        public int maxHealth;
-        public int punchDamage;
-        public int kickDamage;
-        public int specialDamage;
+    [Header("Combat")]
+    public int maxHealth = 100;
+    public int punchDamage = 8;
+    public int kickDamage = 12;
+    public int specialDamage = 20;
 
-        public float moveSpeed;
-        public float jumpForce;
-        public float specialCooldown = 5f;
-    
-    */
+    [Header("Movement")]
+    public float moveSpeed = 6f;
+    public float jumpVelocity = 12f;
+    public float specialCooldown = 5f;
 }

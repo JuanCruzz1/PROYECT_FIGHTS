@@ -681,13 +681,13 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 1
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: c37022c4-b217-49a8-a4f9-d9bbf93656ef
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: PROYECT_FIGHTS
-  organizationId: felipe_cruzz
+  organizationId: 
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

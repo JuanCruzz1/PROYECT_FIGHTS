@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public CharacterData SelectedCharacter { get; private set; }
     public GameObject SelectedCharacterPrefab { get; private set; }
+    public FighterCharacter SelectedFighterCharacter { get; private set; } = FighterCharacter.FerchoPoker;
     public GameFlowState CurrentState { get; private set; } = GameFlowState.Start;
 
     private void Awake()
@@ -36,7 +37,17 @@ public class GameManager : MonoBehaviour
     public void SetSelectedCharacter(CharacterData character, GameObject characterPrefab)
     {
         SelectedCharacter = character;
-        SelectedCharacterPrefab = characterPrefab;
+        SelectedCharacterPrefab = characterPrefab != null ? characterPrefab : character != null ? character.characterPrefab : null;
+
+        if (character != null)
+        {
+            SelectedFighterCharacter = character.fighterCharacter;
+        }
+    }
+
+    public void SetSelectedFighterCharacter(FighterCharacter fighterCharacter)
+    {
+        SelectedFighterCharacter = fighterCharacter;
     }
 
     public void SetGameState(GameFlowState newState)

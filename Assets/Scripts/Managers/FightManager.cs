@@ -8,6 +8,9 @@ public class FightManager : MonoBehaviour
     [Header("Spawning")]
     [SerializeField] private Transform playerSpawnPoint = null;
     [SerializeField] private Transform enemySpawnPoint = null;
+    [SerializeField] private GameObject ferchoPokerPrefab = null;
+    [SerializeField] private GameObject cruzRusherPrefab = null;
+    [SerializeField] private GameObject kingBlingPrefab = null;
     [SerializeField] private GameObject fallbackPlayerPrefab = null;
     [SerializeField] private GameObject enemyPrefab = null;
 
@@ -18,6 +21,8 @@ public class FightManager : MonoBehaviour
     [Header("Health")]
     [SerializeField] private HealthSystem playerHealth = null;
     [SerializeField] private HealthSystem enemyHealth = null;
+    [SerializeField] private CharacterData fallbackPlayerCharacterData = null;
+    [SerializeField] private CharacterData enemyCharacterData = null;
     [SerializeField] private int defaultPlayerHealth = 100;
     [SerializeField] private int defaultEnemyHealth = 100;
 
@@ -48,6 +53,7 @@ public class FightManager : MonoBehaviour
 
         HideFightResult();
         SpawnOrUseSceneCharacters();
+        ConfigureFighters();
         InitializeHealth();
 
         if (startCombatOnStart)
@@ -96,17 +102,37 @@ public class FightManager : MonoBehaviour
 
     private GameObject SpawnPlayer()
     {
-        GameObject selectedPrefab = GameManager.Instance != null
-            ? GameManager.Instance.SelectedCharacterPrefab
-            : null;
+        FighterCharacter selectedCharacter = GameManager.Instance != null
+            ? GameManager.Instance.SelectedFighterCharacter
+            : FighterCharacter.FerchoPoker;
 
-        GameObject prefabToSpawn = selectedPrefab != null ? selectedPrefab : fallbackPlayerPrefab;
+        GameObject prefabToSpawn = GetPlayerPrefabFor(selectedCharacter);
+
+        if (prefabToSpawn == null && GameManager.Instance != null)
+        {
+            prefabToSpawn = GameManager.Instance.SelectedCharacterPrefab;
+        }
+
+        if (prefabToSpawn == null)
+        {
+            prefabToSpawn = fallbackPlayerPrefab;
+        }
+
+        if (prefabToSpawn == null)
+        {
+            Debug.LogWarning($"{nameof(FightManager)}: Missing player prefab for {selectedCharacter}. Assign Fercho/Cruz/King prefabs or fallbackPlayerPrefab.");
+        }
 
         return SpawnPrefab(prefabToSpawn, playerSpawnPoint);
     }
 
     private GameObject SpawnEnemy()
     {
+        if (enemyPrefab == null)
+        {
+            Debug.LogWarning($"{nameof(FightManager)}: enemyPrefab is missing. Assign Enemy_Test or a temporary enemy prefab.");
+        }
+
         return SpawnPrefab(enemyPrefab, enemySpawnPoint);
     }
 
@@ -117,14 +143,50 @@ public class FightManager : MonoBehaviour
             return null;
         }
 
+        if (spawnPoint == null)
+        {
+            Debug.LogWarning($"{nameof(FightManager)}: Spawn point is missing for prefab {prefab.name}. Spawning at world origin.");
+        }
+
         Vector3 position = spawnPoint != null ? spawnPoint.position : Vector3.zero;
         Quaternion rotation = spawnPoint != null ? spawnPoint.rotation : Quaternion.identity;
 
         return Instantiate(prefab, position, rotation);
     }
 
+    private GameObject GetPlayerPrefabFor(FighterCharacter fighterCharacter)
+    {
+        switch (fighterCharacter)
+        {
+            case FighterCharacter.CruzRusher:
+                if (cruzRusherPrefab == null)
+                {
+                    Debug.LogWarning($"{nameof(FightManager)}: CruzRusher prefab is missing. Falling back to FerchoPoker prefab.");
+                }
+
+                return cruzRusherPrefab != null ? cruzRusherPrefab : ferchoPokerPrefab;
+            case FighterCharacter.KingBling:
+                if (kingBlingPrefab == null)
+                {
+                    Debug.LogWarning($"{nameof(FightManager)}: KingBling prefab is missing. Falling back to FerchoPoker prefab.");
+                }
+
+                return kingBlingPrefab != null ? kingBlingPrefab : ferchoPokerPrefab;
+            case FighterCharacter.FerchoPoker:
+            default:
+                if (ferchoPokerPrefab == null)
+                {
+                    Debug.LogWarning($"{nameof(FightManager)}: FerchoPoker prefab is missing.");
+                }
+
+                return ferchoPokerPrefab;
+        }
+    }
+
     private void InitializeHealth()
     {
+        CharacterData selectedCharacter = GetSelectedPlayerCharacterData();
+
         if (playerHealth == null && player != null)
         {
             playerHealth = player.GetComponentInChildren<HealthSystem>();
@@ -137,7 +199,8 @@ public class FightManager : MonoBehaviour
 
         if (playerHealth != null)
         {
-            playerHealth.Initialize(defaultPlayerHealth);
+            int health = selectedCharacter != null ? selectedCharacter.maxHealth : defaultPlayerHealth;
+            playerHealth.Initialize(health);
             playerHealth.OnDeath += HandlePlayerDeath;
         }
         else
@@ -147,13 +210,74 @@ public class FightManager : MonoBehaviour
 
         if (enemyHealth != null)
         {
-            enemyHealth.Initialize(defaultEnemyHealth);
+            int health = enemyCharacterData != null ? enemyCharacterData.maxHealth : defaultEnemyHealth;
+            enemyHealth.Initialize(health);
             enemyHealth.OnDeath += HandleEnemyDeath;
         }
         else
         {
             Debug.LogWarning($"{nameof(FightManager)}: Enemy HealthSystem is missing.");
         }
+    }
+
+    private void ConfigureFighters()
+    {
+        ConfigureFighter(player, FighterTeam.Player, GetSelectedPlayerCharacterData());
+        ConfigureFighter(enemy, FighterTeam.Enemy, enemyCharacterData);
+    }
+
+    private void ConfigureFighter(GameObject fighter, FighterTeam team, CharacterData characterData)
+    {
+        if (fighter == null)
+        {
+            return;
+        }
+
+        DamageReceiver[] receivers = fighter.GetComponentsInChildren<DamageReceiver>(true);
+        for (int i = 0; i < receivers.Length; i++)
+        {
+            receivers[i].SetTeam(team);
+        }
+
+        HitboxController[] hitboxes = fighter.GetComponentsInChildren<HitboxController>(true);
+        for (int i = 0; i < hitboxes.Length; i++)
+        {
+            hitboxes[i].SetOwnerRoot(fighter.transform);
+            hitboxes[i].SetOwnerTeam(team);
+        }
+
+        AttackController attackController = fighter.GetComponentInChildren<AttackController>(true);
+        if (attackController != null)
+        {
+            attackController.Configure(team, characterData);
+        }
+
+        SpecialPowerController specialPowerController = fighter.GetComponentInChildren<SpecialPowerController>(true);
+        if (specialPowerController != null)
+        {
+            specialPowerController.Configure(team, characterData);
+
+            if (team == FighterTeam.Player && characterData == null && GameManager.Instance != null)
+            {
+                specialPowerController.SetFighterCharacter(GameManager.Instance.SelectedFighterCharacter);
+            }
+        }
+
+        PlayerController playerController = fighter.GetComponentInChildren<PlayerController>(true);
+        if (playerController != null && characterData != null)
+        {
+            playerController.ConfigureMovement(characterData.moveSpeed, characterData.jumpVelocity);
+        }
+    }
+
+    private CharacterData GetSelectedPlayerCharacterData()
+    {
+        if (GameManager.Instance != null && GameManager.Instance.SelectedCharacter != null)
+        {
+            return GameManager.Instance.SelectedCharacter;
+        }
+
+        return fallbackPlayerCharacterData;
     }
 
     private void UnsubscribeHealthEvents()
