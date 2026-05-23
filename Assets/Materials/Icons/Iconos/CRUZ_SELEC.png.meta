@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d252d1af1b4f2a549b9800b8bed48be7
+guid: 342f2f1b0d5631143b4c58d9c8b23da3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6282336479180160244
-    second: ChatGPT Image 22 may 2026, 09_58_37_0
+      213: 4114617447947177886
+    second: CRUZ_SELEC_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,9 +46,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChatGPT Image 22 may 2026, 09_58_37_0
+      name: CRUZ_SELEC_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1585
-        height: 992
+        width: 1254
+        height: 1254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4fcf2091eb75f2750800000000000000
-      internalID: 6282336479180160244
+      spriteID: e9f048bc4ce0a1930800000000000000
+      internalID: 4114617447947177886
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ChatGPT Image 22 may 2026, 09_58_37_0: 6282336479180160244
+      CRUZ_SELEC_0: 4114617447947177886
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

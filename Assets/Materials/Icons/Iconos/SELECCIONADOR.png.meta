@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: d252d1af1b4f2a549b9800b8bed48be7
+guid: 5b87faa1cc0942740a96f91e83834f3b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6282336479180160244
-    second: ChatGPT Image 22 may 2026, 09_58_37_0
+      213: -5246533372206779495
+    second: SELECCIONADOR_0
+  - first:
+      213: -9031201669806761624
+    second: SELECCIONADOR_1
+  - first:
+      213: 3062505613565192305
+    second: SELECCIONADOR_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,9 +52,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChatGPT Image 22 may 2026, 09_58_37_0
+      name: SELECCIONADOR_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 1585
-        height: 992
+        y: 3
+        width: 892
+        height: 1251
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +121,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4fcf2091eb75f2750800000000000000
-      internalID: 6282336479180160244
+      spriteID: 993f16ff1b19037b0800000000000000
+      internalID: -5246533372206779495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SELECCIONADOR_1
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 757
+        width: 330
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 869d0404ee9baa280800000000000000
+      internalID: -9031201669806761624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SELECCIONADOR_2
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 0
+        width: 656
+        height: 527
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 178613331a4308a20800000000000000
+      internalID: 3062505613565192305
       vertices: []
       indices: 
       edges: []
@@ -125,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ChatGPT Image 22 may 2026, 09_58_37_0: 6282336479180160244
+      SELECCIONADOR_0: -5246533372206779495
+      SELECCIONADOR_1: -9031201669806761624
+      SELECCIONADOR_2: 3062505613565192305
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

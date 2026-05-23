@@ -316,14 +316,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afed0c28ddffdd743a1b35e67763cbd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpecialPowerController
-  fighterCharacter: 0
+  fighterCharacter: 1
   ownerTeam: 1
   playerController: {fileID: 8973645147448334540}
   spawnPoint: {fileID: 0}
   specialDamage: 20
   cooldown: 2
   cheersBoomPower: {fileID: 0}
-  phantomRushPower: {fileID: 0}
+  phantomRushPower: {fileID: 3901904164146602058}
   chainWhipPower: {fileID: 0}
   debugLogs: 1
 --- !u!114 &3901904164146602058

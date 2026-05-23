@@ -26,12 +26,14 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null)
         {
+            Debug.Log($"{nameof(GameManager)}: Duplicate found on {name}. Keeping existing selection {Instance.SelectedFighterCharacter} and destroying duplicate.");
             Destroy(gameObject);
             return;
         }
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        Debug.Log($"{nameof(GameManager)}: Instance ready. Current selected fighter: {SelectedFighterCharacter}.");
     }
 
     public void SetSelectedCharacter(CharacterData character, GameObject characterPrefab)
@@ -43,11 +45,14 @@ public class GameManager : MonoBehaviour
         {
             SelectedFighterCharacter = character.fighterCharacter;
         }
+
+        Debug.Log($"{nameof(GameManager)}: SetSelectedCharacter data={(character != null ? character.name : "None")}, prefab={(SelectedCharacterPrefab != null ? SelectedCharacterPrefab.name : "None")}, fighter={SelectedFighterCharacter}.");
     }
 
     public void SetSelectedFighterCharacter(FighterCharacter fighterCharacter)
     {
         SelectedFighterCharacter = fighterCharacter;
+        Debug.Log($"{nameof(GameManager)}: SelectedFighterCharacter saved as {SelectedFighterCharacter}.");
     }
 
     public void SetGameState(GameFlowState newState)

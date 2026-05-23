@@ -46,6 +46,8 @@ public class FightManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log($"{nameof(FightManager)}: Start. GameManager={(GameManager.Instance != null ? "found" : "missing")}, selectedFighter={(GameManager.Instance != null ? GameManager.Instance.SelectedFighterCharacter.ToString() : "None")}.");
+
         if (GameManager.Instance != null)
         {
             GameManager.Instance.SetGameState(GameFlowState.Fighting);
@@ -96,7 +98,21 @@ public class FightManager : MonoBehaviour
 
     private void SpawnOrUseSceneCharacters()
     {
-        player = scenePlayer != null ? scenePlayer : SpawnPlayer();
+        if (scenePlayer != null && GameManager.Instance == null)
+        {
+            Debug.Log($"{nameof(FightManager)}: Using scenePlayer {scenePlayer.name} because GameManager is missing.");
+            player = scenePlayer;
+        }
+        else
+        {
+            if (scenePlayer != null)
+            {
+                Debug.Log($"{nameof(FightManager)}: Ignoring scenePlayer {scenePlayer.name}; spawning selected player from GameManager.");
+            }
+
+            player = SpawnPlayer();
+        }
+
         enemy = sceneEnemy != null ? sceneEnemy : SpawnEnemy();
     }
 
@@ -105,6 +121,8 @@ public class FightManager : MonoBehaviour
         FighterCharacter selectedCharacter = GameManager.Instance != null
             ? GameManager.Instance.SelectedFighterCharacter
             : FighterCharacter.FerchoPoker;
+
+        Debug.Log($"{nameof(FightManager)}: SpawnPlayer selected fighter={selectedCharacter}.");
 
         GameObject prefabToSpawn = GetPlayerPrefabFor(selectedCharacter);
 
@@ -121,6 +139,10 @@ public class FightManager : MonoBehaviour
         if (prefabToSpawn == null)
         {
             Debug.LogWarning($"{nameof(FightManager)}: Missing player prefab for {selectedCharacter}. Assign Fercho/Cruz/King prefabs or fallbackPlayerPrefab.");
+        }
+        else
+        {
+            Debug.Log($"{nameof(FightManager)}: Instantiating player prefab {prefabToSpawn.name} for {selectedCharacter}.");
         }
 
         return SpawnPrefab(prefabToSpawn, playerSpawnPoint);
@@ -164,6 +186,7 @@ public class FightManager : MonoBehaviour
                     Debug.LogWarning($"{nameof(FightManager)}: CruzRusher prefab is missing. Falling back to FerchoPoker prefab.");
                 }
 
+                Debug.Log($"{nameof(FightManager)}: Prefab lookup CruzRusher -> {(cruzRusherPrefab != null ? cruzRusherPrefab.name : "None")}.");
                 return cruzRusherPrefab != null ? cruzRusherPrefab : ferchoPokerPrefab;
             case FighterCharacter.KingBling:
                 if (kingBlingPrefab == null)
@@ -171,6 +194,7 @@ public class FightManager : MonoBehaviour
                     Debug.LogWarning($"{nameof(FightManager)}: KingBling prefab is missing. Falling back to FerchoPoker prefab.");
                 }
 
+                Debug.Log($"{nameof(FightManager)}: Prefab lookup KingBling -> {(kingBlingPrefab != null ? kingBlingPrefab.name : "None")}.");
                 return kingBlingPrefab != null ? kingBlingPrefab : ferchoPokerPrefab;
             case FighterCharacter.FerchoPoker:
             default:
@@ -179,6 +203,7 @@ public class FightManager : MonoBehaviour
                     Debug.LogWarning($"{nameof(FightManager)}: FerchoPoker prefab is missing.");
                 }
 
+                Debug.Log($"{nameof(FightManager)}: Prefab lookup FerchoPoker -> {(ferchoPokerPrefab != null ? ferchoPokerPrefab.name : "None")}.");
                 return ferchoPokerPrefab;
         }
     }

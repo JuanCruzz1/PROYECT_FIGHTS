@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afed0c28ddffdd743a1b35e67763cbd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpecialPowerController
-  fighterCharacter: 0
+  fighterCharacter: 2
   ownerTeam: 1
   playerController: {fileID: 8973645147448334540}
   spawnPoint: {fileID: 0}
@@ -324,7 +324,7 @@ MonoBehaviour:
   cooldown: 2
   cheersBoomPower: {fileID: 0}
   phantomRushPower: {fileID: 0}
-  chainWhipPower: {fileID: 0}
+  chainWhipPower: {fileID: 8950269196696243811}
   debugLogs: 1
 --- !u!114 &8950269196696243811
 MonoBehaviour:
@@ -338,11 +338,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 194f109584c729b4daac2c60a9b72465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChainWhipPower
-  chainPrefab: {fileID: 0}
-  speed: 12
-  maxRange: 5
+  chainPrefab: {fileID: 5158099916195853648}
+  extensionSpeed: 12
+  returnSpeed: 16
+  maxDistance: 5
+  returnStopDistance: 0.25
   hitRadius: 0.25
   targetLayers:
     serializedVersion: 2
     m_Bits: 256
+  canHitMultipleTimes: 0
   debugLogs: 1

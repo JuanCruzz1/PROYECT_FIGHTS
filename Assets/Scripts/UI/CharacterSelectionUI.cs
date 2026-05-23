@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CharacterSelectionUI : MonoBehaviour
@@ -11,16 +12,20 @@ public class CharacterSelectionUI : MonoBehaviour
         public CharacterData characterData;
         public GameObject characterPrefab;
         public Sprite icon;
+        public GameObject infoPanel;
+        public Sprite infoSprite;
     }
 
     [SerializeField] private CharacterOption[] characters = null;
     [SerializeField] private SceneLoader sceneLoader = null;
     [SerializeField] private Text characterNameText = null;
     [SerializeField] private Image characterIconImage = null;
-    [SerializeField] private bool continueThroughLoadingScene = false;
+    [SerializeField] private Image characterInfoImage = null;
+    [SerializeField] private CharacterButtonVisual[] characterButtonVisuals = null;
+    [SerializeField] private string loadingSceneName = "LoadingScene";
     [SerializeField] private KeyCode previousKey = KeyCode.A;
     [SerializeField] private KeyCode nextKey = KeyCode.D;
-    [SerializeField] private KeyCode confirmKey = KeyCode.X;
+    [SerializeField] private KeyCode confirmKey = KeyCode.K;
 
     private int selectedIndex;
 
@@ -71,6 +76,7 @@ public class CharacterSelectionUI : MonoBehaviour
         }
 
         UpdateSelectionView();
+        LogCurrentSelection("Previous");
     }
 
     public void SelectNext()
@@ -82,6 +88,7 @@ public class CharacterSelectionUI : MonoBehaviour
 
         selectedIndex = (selectedIndex + 1) % characters.Length;
         UpdateSelectionView();
+        LogCurrentSelection("Next");
     }
 
     public void ConfirmSelection()
@@ -93,6 +100,7 @@ public class CharacterSelectionUI : MonoBehaviour
         }
 
         CharacterOption selectedCharacter = characters[selectedIndex];
+        Debug.Log($"{nameof(CharacterSelectionUI)}: Confirm pressed with {confirmKey}. Index={selectedIndex}, fighter={selectedCharacter.fighterCharacter}, display={GetCharacterDisplayName(selectedCharacter)}.");
 
         if (GameManager.Instance != null)
         {
@@ -101,21 +109,14 @@ public class CharacterSelectionUI : MonoBehaviour
                 selectedCharacter.characterPrefab
             );
 
-            if (selectedCharacter.characterData == null)
-            {
-                GameManager.Instance.SetSelectedFighterCharacter(selectedCharacter.fighterCharacter);
-            }
+            GameManager.Instance.SetSelectedFighterCharacter(selectedCharacter.fighterCharacter);
         }
-
-        FindSceneLoaderIfNeeded();
-
-        if (sceneLoader == null)
+        else
         {
-            Debug.LogWarning($"{nameof(CharacterSelectionUI)}: SceneLoader reference is missing.");
-            return;
+            Debug.LogWarning($"{nameof(CharacterSelectionUI)}: GameManager.Instance is missing. Selection cannot persist.");
         }
 
-        sceneLoader.LoadLoadingOrFight(continueThroughLoadingScene);
+        LoadLoadingScene();
     }
 
     private void UpdateSelectionView()
@@ -132,6 +133,14 @@ public class CharacterSelectionUI : MonoBehaviour
                 characterIconImage.enabled = false;
             }
 
+            if (characterInfoImage != null)
+            {
+                characterInfoImage.enabled = false;
+            }
+
+            SetAllInfoPanelsInactive();
+            UpdateButtonVisuals();
+
             return;
         }
 
@@ -147,6 +156,26 @@ public class CharacterSelectionUI : MonoBehaviour
             characterIconImage.sprite = selectedCharacter.icon;
             characterIconImage.enabled = selectedCharacter.icon != null;
         }
+
+        if (characterInfoImage != null)
+        {
+            characterInfoImage.sprite = selectedCharacter.infoSprite;
+            characterInfoImage.enabled = selectedCharacter.infoSprite != null;
+        }
+
+        UpdateInfoPanels();
+        UpdateButtonVisuals();
+    }
+
+    private void LogCurrentSelection(string source)
+    {
+        if (!HasCharacters())
+        {
+            return;
+        }
+
+        CharacterOption selectedCharacter = characters[selectedIndex];
+        Debug.Log($"{nameof(CharacterSelectionUI)}: {source} selection index={selectedIndex}, fighter={selectedCharacter.fighterCharacter}, display={GetCharacterDisplayName(selectedCharacter)}.");
     }
 
     private bool HasCharacters()
@@ -179,6 +208,76 @@ public class CharacterSelectionUI : MonoBehaviour
         if (sceneLoader == null)
         {
             sceneLoader = FindFirstObjectByType<SceneLoader>();
+        }
+    }
+
+    private void LoadLoadingScene()
+    {
+        if (string.IsNullOrWhiteSpace(loadingSceneName))
+        {
+            Debug.LogWarning($"{nameof(CharacterSelectionUI)}: loadingSceneName is not assigned.");
+            return;
+        }
+
+        if (sceneLoader != null)
+        {
+            sceneLoader.LoadScene(loadingSceneName);
+            return;
+        }
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SetGameState(GameFlowState.Loading);
+        }
+
+        SceneManager.LoadScene(loadingSceneName);
+    }
+
+    private void UpdateInfoPanels()
+    {
+        if (!HasCharacters())
+        {
+            return;
+        }
+
+        for (int i = 0; i < characters.Length; i++)
+        {
+            if (characters[i].infoPanel != null)
+            {
+                characters[i].infoPanel.SetActive(i == selectedIndex);
+            }
+        }
+    }
+
+    private void SetAllInfoPanelsInactive()
+    {
+        if (characters == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < characters.Length; i++)
+        {
+            if (characters[i].infoPanel != null)
+            {
+                characters[i].infoPanel.SetActive(false);
+            }
+        }
+    }
+
+    private void UpdateButtonVisuals()
+    {
+        if (characterButtonVisuals == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < characterButtonVisuals.Length; i++)
+        {
+            if (characterButtonVisuals[i] != null)
+            {
+                characterButtonVisuals[i].SetSelected(HasCharacters() && i == selectedIndex);
+            }
         }
     }
 }
