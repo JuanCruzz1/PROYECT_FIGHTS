@@ -119,37 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &58146244
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 58146245}
-  m_Layer: 0
-  m_Name: pruebaa (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &58146245
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58146244}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.35993, y: -0.25541, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &83328820
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +281,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 177803219}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1786612773}
+        m_TargetAssemblyTypeName: GoToCredits, Assembly-CSharp
+        m_MethodName: OpenCreditsScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &177803219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3593332087016862261, guid: e09e0872d85d7f3459f1fa6dfee51cbc, type: 3}
+  m_Sprite: {fileID: -4072577525162438866, guid: ca2f2138561b13a4e9684cb266f4074c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -363,8 +344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2098caa487baa01469d360ca8a47b325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoverButtonEffect
-  spriteNormal: {fileID: 3593332087016862261, guid: e09e0872d85d7f3459f1fa6dfee51cbc, type: 3}
-  spriteHover: {fileID: -1264872954541260422, guid: b4866bb30f4b4bb43af7db01bcb243bb, type: 3}
+  spriteNormal: {fileID: -4072577525162438866, guid: ca2f2138561b13a4e9684cb266f4074c, type: 3}
+  spriteHover: {fileID: -4665480172196987931, guid: cfccc607ba3613a489b546cc7be23fbc, type: 3}
 --- !u!1 &243814603
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,7 +538,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8060460541097302833, guid: d27b1ce0786f55b4b971d3bc6b233876, type: 3}
+  m_Sprite: {fileID: 2624698418206836713, guid: fd879f6b9bd332b4e8ccc00ddfd3e76b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -587,8 +568,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2098caa487baa01469d360ca8a47b325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoverButtonEffect
-  spriteNormal: {fileID: -8060460541097302833, guid: d27b1ce0786f55b4b971d3bc6b233876, type: 3}
-  spriteHover: {fileID: 8558025165968288696, guid: 4af26cdcbca736944a4fd1407a189fe3, type: 3}
+  spriteNormal: {fileID: 2624698418206836713, guid: fd879f6b9bd332b4e8ccc00ddfd3e76b, type: 3}
+  spriteHover: {fileID: 5442396735631674619, guid: 060898628ce59724c808e41ba62d3cdb, type: 3}
 --- !u!114 &401221629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,6 +687,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &640300300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 640300302}
+  - component: {fileID: 640300301}
+  m_Layer: 0
+  m_Name: SceneManagerObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &640300301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640300300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e913faea46f9f7149baa6b9c97e6d093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeSceneButton
+--- !u!4 &640300302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640300300}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.35993, y: -0.25541, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &677110551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,7 +1090,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 993940245}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 640300301}
+        m_TargetAssemblyTypeName: ChangeSceneButton, Assembly-CSharp
+        m_MethodName: GoToSelectCharacter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &993940245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,7 +1123,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5546521419647986326, guid: 679f228377da263419e3ca77ca1a7ff0, type: 3}
+  m_Sprite: {fileID: -7173137575626243115, guid: a31f1ca07da5bf14a97e9a7e937f05c4, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1116,8 +1153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2098caa487baa01469d360ca8a47b325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoverButtonEffect
-  spriteNormal: {fileID: -5546521419647986326, guid: 679f228377da263419e3ca77ca1a7ff0, type: 3}
-  spriteHover: {fileID: 9182390601530641763, guid: 60caad1bf2dfb504798872d20539295c, type: 3}
+  spriteNormal: {fileID: -7173137575626243115, guid: a31f1ca07da5bf14a97e9a7e937f05c4, type: 3}
+  spriteHover: {fileID: -462228603626739423, guid: 7cdcc298ec0778044aab09b9ae7e6dbe, type: 3}
 --- !u!1 &1190362919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,6 +1450,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1786612772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1786612774}
+  - component: {fileID: 1786612773}
+  m_Layer: 0
+  m_Name: Credits
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1786612773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786612772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c540ac79a1910334b99f1b816055c786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoToCredits
+--- !u!4 &1786612774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786612772}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.72109, y: 1.51767, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2108491471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1559,4 +1640,5 @@ SceneRoots:
   - {fileID: 83328823}
   - {fileID: 1623991040}
   - {fileID: 1759947989}
-  - {fileID: 58146245}
+  - {fileID: 640300302}
+  - {fileID: 1786612774}

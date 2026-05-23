@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d27b1ce0786f55b4b971d3bc6b233876
+guid: 122c2cfc961734841951f30332aa8b3e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8060460541097302833
-    second: "Dise\xF1o sin t\xEDtulo (4)_0"
+      213: 610379678248422071
+    second: "Dise\xF1o sin t\xEDtulo (7)_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,27 +96,40 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Dise\xF1o sin t\xEDtulo (4)_0"
+      name: "Dise\xF1o sin t\xEDtulo (7)_0"
       rect:
         serializedVersion: 2
-        x: 380
-        y: 354
-        width: 1160
-        height: 384
+        x: 643
+        y: 410
+        width: 634
+        height: 239
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fc4a7d118dd732090800000000000000
-      internalID: -8060460541097302833
+      spriteID: 7ba4d1c5511887800800000000000000
+      internalID: 610379678248422071
       vertices: []
       indices: 
       edges: []
@@ -125,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c6dc9e927c26c6144824ff3c4899d0ca
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "Dise\xF1o sin t\xEDtulo (4)_0": -8060460541097302833
+      "Dise\xF1o sin t\xEDtulo (7)_0": 610379678248422071
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
