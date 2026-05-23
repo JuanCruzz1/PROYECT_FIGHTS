@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 12244f430f011f440ae272b58e42326a
+guid: 48fc041670d5fb340a35667b617d1ce3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5573331037115617117
-    second: Gemini_Generated_Image_bl09k0bl09k0bl09_0
+      213: -4761361387042840270
+    second: RUGAL_IDL_0
+  - first:
+      213: 9216396339677923711
+    second: RUGAL_IDL_1
+  - first:
+      213: -2032017041008080591
+    second: RUGAL_IDL_2
+  - first:
+      213: -1747409431691060137
+    second: RUGAL_IDL_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gemini_Generated_Image_bl09k0bl09k0bl09_0
+      name: RUGAL_IDL_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1376
-        height: 768
+        x: 121
+        y: 1061
+        width: 11
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d5f8feaac03785d40800000000000000
-      internalID: 5573331037115617117
+      spriteID: 231ec069b0f3cedb0800000000000000
+      internalID: -4761361387042840270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RUGAL_IDL_1
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 58
+        width: 824
+        height: 1362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7986bfe3a737ef70800000000000000
+      internalID: 9216396339677923711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RUGAL_IDL_2
+      rect:
+        serializedVersion: 2
+        x: 943
+        y: 1080
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1394c2d6443dcc3e0800000000000000
+      internalID: -2032017041008080591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RUGAL_IDL_3
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 1000
+        width: 31
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75c13ea4164ffb7e0800000000000000
+      internalID: -1747409431691060137
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Gemini_Generated_Image_bl09k0bl09k0bl09_0: 5573331037115617117
+      RUGAL_IDL_0: -4761361387042840270
+      RUGAL_IDL_1: 9216396339677923711
+      RUGAL_IDL_2: -2032017041008080591
+      RUGAL_IDL_3: -1747409431691060137
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
