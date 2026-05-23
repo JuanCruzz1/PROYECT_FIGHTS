@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e09e0872d85d7f3459f1fa6dfee51cbc
+guid: cfccc607ba3613a489b546cc7be23fbc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3593332087016862261
-    second: "Dise\xF1o sin t\xEDtulo (2)_0"
+      213: -4665480172196987931
+    second: BOTON2_ACT_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Dise\xF1o sin t\xEDtulo (2)_0"
+      name: BOTON2_ACT_0
       rect:
         serializedVersion: 2
-        x: 380
-        y: 351
-        width: 1157
-        height: 387
+        x: 62
+        y: 48
+        width: 894
+        height: 295
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 53237aeae741ed130800000000000000
-      internalID: 3593332087016862261
+      spriteID: 5ebf19d8082e04fb0800000000000000
+      internalID: -4665480172196987931
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f61b380c94b447c4bbba5dc7af0fbe63
+    spriteID: 8e390a7ffdc2992479e6b308f03a3cfa
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "Dise\xF1o sin t\xEDtulo (2)_0": 3593332087016862261
+      BOTON2_ACT_0: -4665480172196987931
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
