@@ -44,5 +44,14 @@ TagManager:
   - name: Background
     uniqueID: 3475868791
     locked: 0
+  - name: Characters
+    uniqueID: 2252018387
+    locked: 0
+  - name: Projectiles
+    uniqueID: 2676444225
+    locked: 0
+  - name: UI
+    uniqueID: 4063430547
+    locked: 0
   m_RenderingLayers:
   - Default

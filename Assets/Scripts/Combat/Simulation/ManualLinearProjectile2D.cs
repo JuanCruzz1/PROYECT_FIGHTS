@@ -12,6 +12,8 @@ public class ManualLinearProjectile2D : MonoBehaviour
     [SerializeField] private SpriteRenderer chainTipRenderer = null;
     [SerializeField] private float chainBodyBaseLength = 1f;
     [SerializeField] private float chainBodyMinLength = 0.01f;
+    [SerializeField] private float chainVisualOverlap = 0.25f;
+    [SerializeField] private bool debugChainVisuals = false;
 
     private enum ChainState
     {
@@ -20,6 +22,7 @@ public class ManualLinearProjectile2D : MonoBehaviour
     }
 
     private Transform owner;
+    private Transform originTransform;
     private FighterTeam ownerTeam;
     private int damage;
     private Vector2 origin;
@@ -37,6 +40,7 @@ public class ManualLinearProjectile2D : MonoBehaviour
     private float elapsed;
     private bool launched;
     private Vector3 chainBodyInitialScale = Vector3.one;
+    private float nextVisualDebugLogTime;
 
     private void Awake()
     {
@@ -46,6 +50,7 @@ public class ManualLinearProjectile2D : MonoBehaviour
 
     public void Launch(
         Transform newOwner,
+        Transform newOriginTransform,
         FighterTeam newOwnerTeam,
         int newDamage,
         Vector2 newDirection,
@@ -59,9 +64,10 @@ public class ManualLinearProjectile2D : MonoBehaviour
     )
     {
         owner = newOwner;
+        originTransform = newOriginTransform != null ? newOriginTransform : newOwner;
         ownerTeam = newOwnerTeam;
         damage = newDamage;
-        origin = transform.position;
+        origin = originTransform != null ? originTransform.position : transform.position;
         direction = newDirection.sqrMagnitude > 0f ? newDirection.normalized : Vector2.right;
         extensionSpeed = Mathf.Max(0.01f, newExtensionSpeed);
         returnSpeed = Mathf.Max(0.01f, newReturnSpeed);
@@ -116,7 +122,7 @@ public class ManualLinearProjectile2D : MonoBehaviour
 
     private void UpdateReturn(float deltaTime)
     {
-        Vector2 targetPosition = owner != null ? owner.position : origin;
+        Vector2 targetPosition = GetCurrentOriginPosition();
         Vector2 currentPosition = transform.position;
         Vector2 toOwner = targetPosition - currentPosition;
 
@@ -172,7 +178,7 @@ public class ManualLinearProjectile2D : MonoBehaviour
             chainBodyInitialScale = chainBody.localScale;
         }
 
-        if (chainBodyRenderer != null && chainBodyRenderer.sprite != null)
+        if (chainBodyBaseLength <= 0f && chainBodyRenderer != null && chainBodyRenderer.sprite != null)
         {
             chainBodyBaseLength = Mathf.Max(0.01f, chainBodyRenderer.sprite.bounds.size.x);
         }
@@ -189,11 +195,10 @@ public class ManualLinearProjectile2D : MonoBehaviour
             return;
         }
 
-        Vector2 visualStart = owner != null ? owner.position : origin;
+        Vector2 visualStart = GetCurrentOriginPosition();
         Vector2 visualTip = transform.position;
-        Vector2 startToTip = visualTip - visualStart;
-        float distance = startToTip.magnitude;
-        float angle = distance > 0.001f ? Mathf.Atan2(startToTip.y, startToTip.x) * Mathf.Rad2Deg : 0f;
+        float visualDirection = direction.x >= 0f ? 1f : -1f;
+        float angle = visualDirection >= 0f ? 0f : 180f;
         Quaternion visualRotation = Quaternion.Euler(0f, 0f, angle);
 
         if (chainStart != null)
@@ -210,20 +215,46 @@ public class ManualLinearProjectile2D : MonoBehaviour
 
         if (chainBody != null)
         {
-            // Visual length formula:
-            // bodyLength = distance(currentOwnerPosition, currentTipPosition)
-            // The sprite is placed at the midpoint and scaled on local X so it spans
-            // between ChainStart and ChainTip while movement remains fully manual.
-            chainBody.position = Vector2.Lerp(visualStart, visualTip, 0.5f);
-            chainBody.rotation = visualRotation;
+            Vector2 bodyStart = chainStart != null ? (Vector2)chainStart.position : visualStart;
+            Vector2 bodyTip = chainTip != null ? (Vector2)chainTip.position : visualTip;
+            float distance = Vector2.Distance(bodyStart, bodyTip);
+            float visualLength = distance + Mathf.Max(0f, chainVisualOverlap);
+            float bodyBaseLength = Mathf.Max(0.01f, chainBodyBaseLength);
+            float newScaleX = Mathf.Abs(chainBodyInitialScale.x) * (visualLength / bodyBaseLength);
 
-            float lengthScale = Mathf.Max(chainBodyMinLength, distance / Mathf.Max(0.01f, chainBodyBaseLength));
+            // Visual length formula:
+            // visualLength = distance(ChainStart, ChainTip) + chainVisualOverlap.
+            // Only local X changes, so ChainBody covers the gap while ChainStart and
+            // ChainTip keep their mathematically calculated positions.
+            chainBody.position = (bodyStart + bodyTip) * 0.5f;
+            chainBody.rotation = visualRotation;
             chainBody.localScale = new Vector3(
-                chainBodyInitialScale.x * lengthScale,
+                Mathf.Max(chainBodyMinLength, newScaleX),
                 chainBodyInitialScale.y,
                 chainBodyInitialScale.z
             );
+
+            if (debugChainVisuals && Time.time >= nextVisualDebugLogTime)
+            {
+                nextVisualDebugLogTime = Time.time + 0.5f;
+                Debug.Log($"{nameof(ManualLinearProjectile2D)} on {name}: ChainVisual distance={distance:F2}, visualLength={visualLength:F2}, newScaleX={newScaleX:F2}.");
+            }
         }
+    }
+
+    private Vector2 GetCurrentOriginPosition()
+    {
+        if (originTransform != null)
+        {
+            return originTransform.position;
+        }
+
+        if (owner != null)
+        {
+            return owner.position;
+        }
+
+        return origin;
     }
 
     private bool CanDamage(DamageReceiver receiver)

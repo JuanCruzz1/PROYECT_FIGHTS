@@ -6,6 +6,6 @@ public class ChangeSceneButton : MonoBehaviour
     // Función para cambiar de escena
     public void GoToSelectCharacter()
     {
-        SceneManager.LoadScene("Select_Character");
+        SceneManager.LoadScene("CharacterSelectionScene");
     }
 }

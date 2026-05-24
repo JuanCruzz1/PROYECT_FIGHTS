@@ -67,7 +67,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3, y: -1.4, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1.5, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7089711822301607160}
@@ -118,8 +118,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2042948909
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
@@ -193,7 +193,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 2.5
+  m_GravityScale: 2.6
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -217,15 +217,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c60fde59405c4d84eac747bf9079915e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
-  jumpVelocity: 8
+  moveSpeed: 7
+  jumpVelocity: 9.5
   groundCheck: {fileID: 7089711822301607160}
   groundCheckRadius: 0.15
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   groundCheckFallbackOffset: {x: 0, y: -0.55}
-  debugLogs: 1
+  debugLogs: 0
 --- !u!114 &2787346367125236010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthSystem
   maxHealth: 100
   currentHealth: 100
-  debugLogs: 1
+  debugLogs: 0
 --- !u!114 &5408630365219491867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,9 +274,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c14b06d11d933499377f574931d74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageReceiver
-  healthSystem: {fileID: 0}
+  healthSystem: {fileID: 296693455006236631}
+  shieldController: {fileID: 0}
   team: 1
-  debugLogs: 1
+  debugLogs: 0
 --- !u!114 &5489625314818450870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,21 +290,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799f3a426b4dbee48824a89ac1f46510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackController
-  ownerRoot: {fileID: 0}
+  ownerRoot: {fileID: 4994721792725406685}
   playerController: {fileID: 8973645147448334540}
   ownerTeam: 1
-  punchDamage: 10
+  punchDamage: 5
   punchOffset: {x: 0.75, y: 0.15}
-  punchSize: {x: 1, y: 1}
-  punchCooldown: 0.3
-  kickDamage: 15
-  kickOffset: {x: 0.95, y: -0.1}
-  kickSize: {x: 1.4, y: 1}
-  kickCooldown: 0.5
+  punchSize: {x: 1.5, y: 1}
+  punchCooldown: 0.25
+  kickDamage: 8
+  kickOffset: {x: 0.9, y: -0.1}
+  kickSize: {x: 1.9, y: 1}
+  kickCooldown: 0.45
   targetLayers:
     serializedVersion: 2
     m_Bits: 256
-  debugLogs: 1
+  debugLogs: 0
 --- !u!114 &5045573029683656035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,12 +321,12 @@ MonoBehaviour:
   ownerTeam: 1
   playerController: {fileID: 8973645147448334540}
   spawnPoint: {fileID: 0}
-  specialDamage: 20
-  cooldown: 2
+  specialDamage: 15
+  cooldown: 2.2
   cheersBoomPower: {fileID: 0}
   phantomRushPower: {fileID: 3901904164146602058}
   chainWhipPower: {fileID: 0}
-  debugLogs: 1
+  debugLogs: 0
 --- !u!114 &3901904164146602058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,13 +339,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24cd05582ee5604984d6603c472e9b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhantomRushPower
-  accelerationDuration: 0.12
-  impactDuration: 0.18
-  decelerationDuration: 0.18
-  peakSpeed: 16
-  impactOffset: {x: 0.85, y: 0}
-  impactSize: {x: 1.1, y: 0.8}
+  accelerationDuration: 0.1
+  impactDuration: 0.16
+  decelerationDuration: 0.22
+  peakSpeed: 18
+  impactOffset: {x: 0.9, y: 0}
+  impactSize: {x: 1.15, y: 0.85}
   targetLayers:
     serializedVersion: 2
     m_Bits: 256
-  debugLogs: 1
+  debugLogs: 0

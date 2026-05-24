@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a78c6d9893f6ea241a15d42be8aa388c
+guid: fe9ef2c686d55b641870d368ba2e08f8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9025224944881624591
-    second: ChatGPT Image 22 may 2026, 23_54_04_0
+      213: 6410268802491366009
+    second: CADENA_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChatGPT Image 22 may 2026, 23_54_04_0
+      name: CADENA_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1672
-        height: 941
+        width: 366
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1f91656fab5ffb280800000000000000
-      internalID: -9025224944881624591
+      spriteID: 97a34474389d5f850800000000000000
+      internalID: 6410268802491366009
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ChatGPT Image 22 may 2026, 23_54_04_0: -9025224944881624591
+      CADENA_2_0: 6410268802491366009
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

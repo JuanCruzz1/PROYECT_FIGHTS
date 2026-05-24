@@ -10,6 +10,7 @@ public enum FighterTeam
 public class DamageReceiver : MonoBehaviour
 {
     [SerializeField] private HealthSystem healthSystem = null;
+    [SerializeField] private EnemyShieldController shieldController = null;
     [SerializeField] private FighterTeam team = FighterTeam.Neutral;
     [SerializeField] private bool debugLogs = true;
 
@@ -20,6 +21,27 @@ public class DamageReceiver : MonoBehaviour
         if (healthSystem == null)
         {
             healthSystem = GetComponentInParent<HealthSystem>();
+        }
+
+        if (shieldController == null)
+        {
+            shieldController = GetComponent<EnemyShieldController>();
+
+            if (shieldController == null)
+            {
+                shieldController = GetComponentInParent<EnemyShieldController>();
+            }
+        }
+    }
+
+    private void Reset()
+    {
+        healthSystem = GetComponentInParent<HealthSystem>();
+        shieldController = GetComponent<EnemyShieldController>();
+
+        if (shieldController == null)
+        {
+            shieldController = GetComponentInParent<EnemyShieldController>();
         }
     }
 
@@ -50,6 +72,16 @@ public class DamageReceiver : MonoBehaviour
             return false;
         }
 
+        if (shieldController != null && IsDamageBlockedByShield(attackerTeam))
+        {
+            if (debugLogs)
+            {
+                Debug.Log($"{nameof(DamageReceiver)} on {name}: Damage blocked by shield.");
+            }
+
+            return true;
+        }
+
         if (healthSystem == null)
         {
             Debug.LogWarning($"{nameof(DamageReceiver)} on {name}: HealthSystem reference is missing.");
@@ -63,5 +95,10 @@ public class DamageReceiver : MonoBehaviour
         }
 
         return true;
+    }
+
+    private bool IsDamageBlockedByShield(FighterTeam attackerTeam)
+    {
+        return shieldController != null && shieldController.ShouldBlockDamage(attackerTeam);
     }
 }

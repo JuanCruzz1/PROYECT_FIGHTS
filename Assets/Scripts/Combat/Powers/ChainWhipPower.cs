@@ -32,6 +32,7 @@ public class ChainWhipPower : SpecialPowerBase
 
         simulation.Launch(
             context.Owner,
+            context.SpawnPoint,
             context.OwnerTeam,
             context.Damage,
             Vector2.right * context.FacingDirection,
