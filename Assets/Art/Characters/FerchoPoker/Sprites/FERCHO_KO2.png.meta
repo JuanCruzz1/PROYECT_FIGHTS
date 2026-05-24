@@ -103,9 +103,9 @@ TextureImporter:
       name: FERCHO_KO2_0
       rect:
         serializedVersion: 2
-        x: 11
+        x: 13
         y: 70
-        width: 1054
+        width: 1052
         height: 651
       alignment: 0
       pivot: {x: 0, y: 0}
