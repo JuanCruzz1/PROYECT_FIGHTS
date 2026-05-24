@@ -1,123 +1,136 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
+
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class PauseMenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenuRoot = null;
-    [SerializeField] private SceneLoader sceneLoader = null;
-    [SerializeField] private KeyCode pauseKey = KeyCode.P;
-    [SerializeField] private bool allowPause = true;
+    [Header("UI")]
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private TMP_Text musicButtonText;
+    [SerializeField] private TMP_Text sfxButtonText;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource[] sfxSources;
+
+    [Header("Scenes")]
+    [SerializeField] private string CharacterSelectionScene = "CharacterSelectionScene";
 
     private bool isPaused;
-
-    private void Awake()
-    {
-        FindSceneLoaderIfNeeded();
-    }
+    private bool musicOn = true;
+    private bool sfxOn = true;
 
     private void Start()
     {
-        SetPauseMenuVisible(false);
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+        }
+
+        Time.timeScale = 1f;
+        UpdateAudioTexts();
     }
 
     private void Update()
     {
-        if (allowPause && CanTogglePause() && Input.GetKeyDown(pauseKey))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            TogglePause();
+            if (isPaused)
+            {
+                ResumeFight();
+            }
+            else
+            {
+                PauseFight();
+            }
         }
     }
 
-    public void TogglePause()
-    {
-        if (isPaused)
-        {
-            Resume();
-        }
-        else
-        {
-            Pause();
-        }
-    }
-
-    public void Pause()
+    public void PauseFight()
     {
         isPaused = true;
+
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(true);
+        }
+
         Time.timeScale = 0f;
-        SetPauseMenuVisible(true);
-
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.SetGameState(GameFlowState.Paused);
-        }
     }
 
-    public void Resume()
+    public void ResumeFight()
     {
         isPaused = false;
-        Time.timeScale = 1f;
-        SetPauseMenuVisible(false);
 
-        if (GameManager.Instance != null)
+        if (pausePanel != null)
         {
-            GameManager.Instance.SetGameState(GameFlowState.Fighting);
-        }
-    }
-
-    public void ReturnToSelection()
-    {
-        Time.timeScale = 1f;
-        isPaused = false;
-        FindSceneLoaderIfNeeded();
-
-        if (sceneLoader == null)
-        {
-            Debug.LogWarning($"{nameof(PauseMenuController)}: SceneLoader reference is missing.");
-            return;
+            pausePanel.SetActive(false);
         }
 
-        sceneLoader.LoadCharacterSelection();
+        Time.timeScale = 1f;
     }
 
-    public void Exit()
+    public void EndFight()
     {
         Time.timeScale = 1f;
-        isPaused = false;
-        FindSceneLoaderIfNeeded();
-
-        if (sceneLoader != null)
-        {
-            sceneLoader.ExitGame();
-        }
-        else
-        {
-            Application.Quit();
-        }
+        SceneManager.LoadScene(CharacterSelectionScene);
     }
 
-    private void SetPauseMenuVisible(bool visible)
+    public void QuitGame()
     {
-        if (pauseMenuRoot != null)
-        {
-            pauseMenuRoot.SetActive(visible);
-        }
+        Debug.Log("Cerrando juego...");
+
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
-    private bool CanTogglePause()
+    public void ToggleMusic()
     {
-        if (GameManager.Instance == null)
+        if (MusicManager.Instance != null)
         {
-            return true;
+            MusicManager.Instance.ToggleMute();
+            musicOn = !MusicManager.Instance.IsMuted();
         }
 
-        GameFlowState state = GameManager.Instance.CurrentState;
-        return state == GameFlowState.Fighting || state == GameFlowState.Paused;
+        UpdateAudioTexts();
     }
 
-    private void FindSceneLoaderIfNeeded()
+    public void ToggleSFX()
     {
-        if (sceneLoader == null)
+        sfxOn = !sfxOn;
+
+        if (sfxSources != null)
         {
-            sceneLoader = FindFirstObjectByType<SceneLoader>();
+            foreach (AudioSource source in sfxSources)
+            {
+                if (source != null)
+                {
+                    source.mute = !sfxOn;
+                }
+            }
+        }
+
+        UpdateAudioTexts();
+    }
+
+    private void UpdateAudioTexts()
+    {
+        if (musicButtonText != null)
+        {
+            musicButtonText.text = musicOn ? "MÚSICA: ON" : "MÚSICA: OFF";
+        }
+
+        if (sfxButtonText != null)
+        {
+            sfxButtonText.text = sfxOn ? "SFX: ON" : "SFX: OFF";
         }
     }
 }

@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class CreditsController : MonoBehaviour
 {
     [SerializeField] private SceneLoader sceneLoader = null;
+    [SerializeField] private float exitDelay = 0.40f;
 
     private void Awake()
     {
@@ -19,6 +21,13 @@ public class CreditsController : MonoBehaviour
 
     public void Exit()
     {
+        StartCoroutine(ExitAfterDelay());
+    }
+
+    private IEnumerator ExitAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(exitDelay);
+
         FindSceneLoaderIfNeeded();
 
         if (sceneLoader != null)

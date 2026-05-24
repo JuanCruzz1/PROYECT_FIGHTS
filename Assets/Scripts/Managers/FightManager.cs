@@ -32,6 +32,7 @@ public class FightManager : MonoBehaviour
     [SerializeField] private GameObject koObject = null;
     [SerializeField] private GameObject youLoseObject = null;
     [SerializeField] private ResultMenuController resultMenu = null;
+    [SerializeField] private FightCountdownImageUI countdownImageUI = null;
 
     [Header("Flow")]
     [SerializeField] private bool startCombatOnStart = true;
@@ -77,20 +78,9 @@ public class FightManager : MonoBehaviour
     {
         SetCombatActive(false);
 
-        if (countdownText != null)
+        if (countdownImageUI != null)
         {
-            countdownText.gameObject.SetActive(true);
-
-            countdownText.text = "3";
-            yield return new WaitForSeconds(1f);
-
-            countdownText.text = "2";
-            yield return new WaitForSeconds(1f);
-
-            countdownText.text = "1";
-            yield return new WaitForSeconds(1f);
-
-            countdownText.gameObject.SetActive(false);
+            yield return StartCoroutine(countdownImageUI.PlayCountdown());
         }
 
         SetCombatActive(true);
