@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4020689004393508937}
   - component: {fileID: 4672254141985610420}
   - component: {fileID: 7252432966847596158}
+  - component: {fileID: -7362168328597352500}
   m_Layer: 9
   m_Name: BottleTest
   m_TagString: Untagged
@@ -83,12 +84,12 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0516fcd6b627c846b638774074156a3, type: 3}
   m_Color: {r: 0.7965223, g: 0.8018868, b: 0.4501157, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 8.333333, y: 8.333333}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -141,3 +142,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7137c70d956654291fedd2495a2422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManualParabolicProjectile2D
+--- !u!95 &-7362168328597352500
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6594547519407850636}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 32b26476af12a234dbd33a0afe0ab99b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
