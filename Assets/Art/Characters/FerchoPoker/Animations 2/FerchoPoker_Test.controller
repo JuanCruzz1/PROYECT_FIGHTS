@@ -767,31 +767,31 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 7989565422920037776}
-    m_Position: {x: -20, y: -360, z: 0}
+    m_Position: {x: -10, y: -290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2535178818816080843}
-    m_Position: {x: 480, y: -360, z: 0}
+    m_Position: {x: 490, y: -290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3467881642979798396}
-    m_Position: {x: -1560, y: -340, z: 0}
+    m_Position: {x: -900, y: -250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4772517562688339543}
     m_Position: {x: -20, y: -140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7156710625447621362}
-    m_Position: {x: -1260, y: -390, z: 0}
+    m_Position: {x: -670, y: -350, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6198415226681517634}
-    m_Position: {x: -700, y: -330, z: 0}
+    m_Position: {x: -320, y: -140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6176149558771024882}
-    m_Position: {x: 480, y: -700, z: 0}
+    m_Position: {x: 490, y: -540, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2838961728689227322}
-    m_Position: {x: 1150, y: -180, z: 0}
+    m_Position: {x: 700, y: -160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2760705673093133955}
-    m_Position: {x: -370, y: -700, z: 0}
+    m_Position: {x: -360, y: -540, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 3560349642856864512}
@@ -800,11 +800,11 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: -930, y: -160, z: 0}
-  m_EntryPosition: {x: -930, y: -80, z: 0}
+  m_AnyStatePosition: {x: -690, y: -120, z: 0}
+  m_EntryPosition: {x: 0, y: -10, z: 0}
   m_ExitPosition: {x: -1530, y: -350, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 7989565422920037776}
+  m_DefaultState: {fileID: -4772517562688339543}
 --- !u!1102 &6176149558771024882
 AnimatorState:
   serializedVersion: 6
