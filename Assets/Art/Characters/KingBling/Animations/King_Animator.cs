@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class King_Animator : MonoBehaviour
+public class Cruz_Animator : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     private bool isJumping = false;
+
     private void Start()
     {
         isJumping = false;
